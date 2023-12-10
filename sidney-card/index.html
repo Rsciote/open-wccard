@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here.">
+  <base href="/">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>sidney-card</title>
+</head>
+
+<body>
+  <sidney-card></sidney-card>
+
+  <script type="module" src="./src/sidney-card.js"></script>
+
+  <script> 
+  const duplicateButton = document.getElementById("cloneButton");
+const toggleColorButton = document.getElementById("toggleColorButton");
+const changeTextButton = document.getElementById("changeTextButton");
+const deleteCardButton = document.getElementById("deleteCardButton");
+
+
+cloneButton.addEventListener("click", () => {
+
+    const card = document.querySelector(".card");
+
+    const clonedCard = card.cloneNode(true);
+
+    card.parentNode.insertBefore(clonedCard, card.nextSibling);
+
+    clonedCard.addEventListener("mousein", () => {
+        clonedCard.classList.add("hovered");
+    });
+
+    clonedCard.addEventListener("mouseout", () => {
+        clonedCard.classList.remove("hovered");
+    });
+
+    clonedCard.addEventListener("focusin", () => {
+        clonedCard.classList.add("focused");
+    });
+
+    clonedCard.addEventListener("focusout", () => {
+        clonedCard.classList.remove("focused");
+    });
+});
+
+
+toggleColorButton.addEventListener("click", () => {
+    const card = document.querySelector(".card");
+    card.classList.toggle("toggled-color");
+});
+
+
+changeTextButton.addEventListener("click", () => {
+    const heading = document.querySelector(" h1");
+    heading.textContent = "The Goat";
+});
+
+deleteCardButton.addEventListener("click", () => {
+    const cards = document.querySelectorAll(".card");
+    if (cards.length > 1) {
+        const lastCard = cards[cards.length - 1];
+        lastCard.parentNode.removeChild(lastCard);
+    }
+});
+  </script>
+
+</body>
+
+</html>
